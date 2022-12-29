@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         return view('pages.frontend.index');
     }
 
-    public function details(Request $request, $slug)
+    public function details($slug)
     {
         return view('pages.frontend.details');
     }
 
-    public function cart(Request $request)
+    public function cart()
     {
         return view('pages.frontend.cart');
     }
 
-    public function success(Request $request)
+    public function success()
     {
         return view('pages.frontend.success');
     }
