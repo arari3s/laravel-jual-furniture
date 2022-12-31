@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
         Route::middleware(['admin'])->group(function () {
-            // Product
             Route::resource('product', ProductController::class);
+            Route::resource('product.gallery', ProductGalleryController::class)->shallow();
         });
     });
