@@ -35,13 +35,13 @@
                         <div class="w-full px-3 mb-6">
                             <label
                                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Status</label>
-                            <select name="gender"
+                            <select name="status"
                                 class="appearance-none block w-full lg:w-1/2 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                 <option value="{{ $transaction->status }}" selected>{{ $transaction->status }}</option>
                                 <option disabled>--- select status ---</option>
                                 <option value="PENDING">PENDING</option>
                                 <option value="SUCCESS">SUCCESS</option>
-                                <option value="CHALLENGE">CHALLENGE</option>
+                                <option value="CANCELLED">CANCELLED</option>
                                 <option value="FAILED">FAILED</option>
                                 <option value="SHIPPING">SHIPPING</option>
                                 <option value="SHIPPED">SHIPPED</option>
