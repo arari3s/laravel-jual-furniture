@@ -22,8 +22,14 @@ use App\Http\Controllers\ProductGalleryController;
 // Frontend
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/details/{slug}', [FrontendController::class, 'details'])->name('details');
-Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
-Route::get('/checkout/success', [FrontendController::class, 'success'])->name('checkout-success');
+
+// cart
+Route::middleware(['auth:sanctum', 'verified'])
+    ->group(function () {
+        Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
+        Route::post('/cart/{id}', [FrontendController::class, 'cartAdd'])->name('cart-add');
+        Route::get('/checkout/success', [FrontendController::class, 'success'])->name('checkout-success');
+    });
 
 // Backend
 Route::middleware(['auth:sanctum', 'verified'])
