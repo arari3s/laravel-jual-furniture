@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::query()->orderBy('updated_at', 'desc');
+            $query = Product::query()->latest();
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {

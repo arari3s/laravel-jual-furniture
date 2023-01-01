@@ -19,7 +19,7 @@ class ProductGalleryController extends Controller
     public function index(Product $product)
     {
         if (request()->ajax()) {
-            $query = ProductGallery::where('products_id', $product->id)->orderBy('updated_at', 'desc');
+            $query = ProductGallery::where('products_id', $product->id)->latest();
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {

@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::query()->orderBy('updated_at', 'desc');
+            $query = User::query()->latest();
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {

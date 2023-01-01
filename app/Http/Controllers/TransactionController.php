@@ -18,7 +18,7 @@ class TransactionController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Transaction::query()->orderBy('updated_at', 'desc');
+            $query = Transaction::query()->latest();
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
