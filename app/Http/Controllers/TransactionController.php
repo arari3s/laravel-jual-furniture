@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\TransactionItem;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
 {
@@ -14,7 +16,32 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        if (request()->ajax()) {
+            $query = Transaction::query()->orderBy('updated_at', 'desc');
+
+            return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <a class="inline-block bg-amber-500 text-white rounded-md px-4 py-1 m-1 font-semibold transition duration-500 ease select-none hover:bg-amber-700 focus:outline-none focus:shadow-outline" href="' . route('dashboard.transaction.show', $item->id) .
+                        '">
+                            Show
+                        </a>
+
+                        <a class="inline-block bg-sky-500 text-white rounded-md px-4 py-1 m-1 font-semibold transition duration-500 ease select-none hover:bg-sky-700 focus:outline-none focus:shadow-outline" href="' . route('dashboard.transaction.edit', $item->id) .
+                        '">
+                            Edit
+                        </a>
+                    ';
+                })
+                ->editColumn('total_price', function ($item) {
+                    return number_format($item->total_price);
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make();
+        }
+
+        return view('pages.dashboard.trasaction.index');
     }
 
     /**
@@ -24,7 +51,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -35,7 +62,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -46,7 +73,18 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        if (request()->ajax()) {
+            $query = TransactionItem::with(['product'])->where('transactions_id', $transaction->id);
+
+            return DataTables::of($query)
+                ->editColumn('product.price', function ($item) {
+                    return number_format($item->product->price);
+                })
+                ->addIndexColumn()
+                ->make();
+        }
+
+        return view('pages.dashboard.trasaction.show', compact('transaction'));
     }
 
     /**
@@ -80,6 +118,6 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        abort(404);
     }
 }

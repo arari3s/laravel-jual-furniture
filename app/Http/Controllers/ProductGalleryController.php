@@ -93,7 +93,7 @@ class ProductGalleryController extends Controller
      */
     public function show(ProductGallery $productGallery)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -104,7 +104,7 @@ class ProductGalleryController extends Controller
      */
     public function edit(ProductGallery $productGallery)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -116,7 +116,7 @@ class ProductGalleryController extends Controller
      */
     public function update(Request $request, ProductGallery $productGallery)
     {
-        //
+        abort(404);
     }
 
     /**
