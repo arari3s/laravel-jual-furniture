@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Product &raquo; {{ $product->name }} &raquo; Edit
+            User &raquo; {{ $user->name }} &raquo; Edit
         </h2>
     </x-slot>
 
@@ -26,7 +26,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('dashboard.product.update', $product->id) }}" class="w-full" method="POST"
+                <form action="{{ route('dashboard.user.update', $user->id) }}" class="w-full" method="POST"
                     enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -35,26 +35,29 @@
                         <div class="w-full px-3 mb-6">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Name
                                 <span class="text-red-500">*</span></label>
-                            <input value="{{ old('name') ?? $product->name }}" name="name"
+                            <input value="{{ old('name') ?? $user->name }}" name="name"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                placeholder="Product Name" type="text">
+                                placeholder="User Name" type="text">
                         </div>
 
                         <div class="w-full px-3 mb-6">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Description
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email
                                 <span class="text-red-500">*</span></label>
-                            <textarea name="description"
+                            <input value="{{ old('email') ?? $user->email }}" name="email"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                cols="30" rows="10">{!! old('description') ?? $product->description !!}</textarea>
+                                placeholder="User Email" type="email">
                         </div>
 
                         <div class="w-full px-3 mb-6">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Price
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Roles
                                 <span class="text-red-500">*</span></label>
-                            <input value="{{ old('price') ?? $product->price }}" name="price"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                placeholder="Product Price" type="number">
+                            <select name="roles"
+                                class="appearance-none block w-full lg:w-1/2 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <option value="{{ $user->roles }}" selected>{{ $user->roles }}</option>
+                                <option disabled>--- select roles ---</option>
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="USER">USER</option>
+                            </select>
                         </div>
                     </div>
 
@@ -62,9 +65,9 @@
                         <div class="w-full px-3">
                             <button type="submit"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-10 rounded-md shadow-lg">Update
-                                Product</button>
+                                User</button>
 
-                            <a href="{{ route('dashboard.product.index') }}"
+                            <a href="{{ route('dashboard.user.index') }}"
                                 class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-10 ml-3 rounded-md shadow-lg">
                                 Cancel
                             </a>
@@ -74,10 +77,4 @@
             </div>
         </div>
     </div>
-
-    {{-- CKEditor 4 --}}
-    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('description');
-    </script>
 </x-app-layout>

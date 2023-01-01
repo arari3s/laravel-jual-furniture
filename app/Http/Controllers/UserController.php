@@ -88,7 +88,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('pages.dashboard.user.edit', compact('user'));
     }
 
     /**
@@ -100,7 +100,11 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        //
+        $data = $request->all();
+
+        $user->update($data);
+
+        return redirect()->route('dashboard.user.index');
     }
 
     /**
@@ -109,8 +113,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('dashboard.user.index');
     }
 }
