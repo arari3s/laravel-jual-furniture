@@ -36,5 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             Route::resource('product', ProductController::class);
             Route::resource('product.gallery', ProductGalleryController::class)->shallow();
             Route::resource('transaction', TransactionController::class);
+            Route::resource('transaction', TransactionController::class);
+            Route::resource('user', UserController::class);
         });
     });
