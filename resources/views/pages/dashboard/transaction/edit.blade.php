@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Product &raquo; {{ $product->name }} &raquo; Edit
+            Transaction &raquo; {{ $transaction->name }} &raquo; Edit
         </h2>
     </x-slot>
 
@@ -26,35 +26,26 @@
                     </div>
                 @endif
 
-                <form action="{{ route('dashboard.product.update', $product->id) }}" class="w-full" method="POST"
+                <form action="{{ route('dashboard.transaction.update', $transaction->id) }}" class="w-full" method="POST"
                     enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
 
                     <div class="flex flex-wrap -mx-3">
                         <div class="w-full px-3 mb-6">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Name
-                                <span class="text-red-500">*</span></label>
-                            <input value="{{ old('name') ?? $product->name }}" name="name"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                placeholder="Product Name" type="text">
-                        </div>
-
-                        <div class="w-full px-3 mb-6">
                             <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Description
-                                <span class="text-red-500">*</span></label>
-                            <textarea name="description"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                cols="30" rows="10">{!! old('description') ?? $product->description !!}</textarea>
-                        </div>
-
-                        <div class="w-full px-3 mb-6">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Price
-                                <span class="text-red-500">*</span></label>
-                            <input value="{{ old('price') ?? $product->price }}" name="price"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                placeholder="Product Price" type="number">
+                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Status</label>
+                            <select name="gender"
+                                class="appearance-none block w-full lg:w-1/2 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <option value="{{ $transaction->status }}" selected>{{ $transaction->status }}</option>
+                                <option disabled>--- select status ---</option>
+                                <option value="PENDING">PENDING</option>
+                                <option value="SUCCESS">SUCCESS</option>
+                                <option value="CHALLENGE">CHALLENGE</option>
+                                <option value="FAILED">FAILED</option>
+                                <option value="SHIPPING">SHIPPING</option>
+                                <option value="SHIPPED">SHIPPED</option>
+                            </select>
                         </div>
                     </div>
 
@@ -62,9 +53,9 @@
                         <div class="w-full px-3">
                             <button type="submit"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-10 rounded-md shadow-lg">Update
-                                Product</button>
+                                Transaction</button>
 
-                            <a href="{{ route('dashboard.product.index') }}"
+                            <a href="{{ route('dashboard.transaction.index') }}"
                                 class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-10 ml-3 rounded-md shadow-lg">
                                 Cancel
                             </a>

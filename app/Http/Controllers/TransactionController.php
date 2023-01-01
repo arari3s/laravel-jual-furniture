@@ -41,7 +41,7 @@ class TransactionController extends Controller
                 ->make();
         }
 
-        return view('pages.dashboard.trasaction.index');
+        return view('pages.dashboard.transaction.index');
     }
 
     /**
@@ -84,7 +84,7 @@ class TransactionController extends Controller
                 ->make();
         }
 
-        return view('pages.dashboard.trasaction.show', compact('transaction'));
+        return view('pages.dashboard.transaction.show', compact('transaction'));
     }
 
     /**
@@ -95,7 +95,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return view('pages.dashboard.transaction.edit', compact('transaction'));
     }
 
     /**
