@@ -6,15 +6,15 @@ This furniture sales website is a platform that provides a variety of furniture 
 
 <img src="https://github.com/arari3s/laravel-jual-furniture/blob/ae43b78ccf7846b16f6dc79256227cb7944bb7c1/public/img/Screenshot%202023-01-02%20at%202.11.00%20PM.png">
 
-<img src="">
+<img src="https://github.com/arari3s/laravel-jual-furniture/blob/04c24b22d16af543b9f9e58029e0daec657bb6a3/public/img/Screenshot%202023-01-02%20at%202.11.13%20PM.png">
 
-<img src="">
+## Details Page
 
-<img src="">
+<img src="https://github.com/arari3s/laravel-jual-furniture/blob/04c24b22d16af543b9f9e58029e0daec657bb6a3/public/img/Screenshot%202023-01-02%20at%202.11.49%20PM.png">
 
-<img src="">
+## Shopping Cart Page
 
-<img src="">
+<img src="https://github.com/arari3s/laravel-jual-furniture/blob/04c24b22d16af543b9f9e58029e0daec657bb6a3/public/img/Screenshot%202023-01-02%20at%202.11.57%20PM.png">
 
 ## License
 
